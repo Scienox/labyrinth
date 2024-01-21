@@ -6,9 +6,9 @@ class Graph(Table):
     def __init__(self, rows, columns):
         super().__init__(rows, columns)
 
-        self.makeWay()
+        self._makeWay()
 
-    def makeWay(self):
+    def _makeWay(self):
         steps = (self.rows * self.columns) - 1
         position = (randint(0, self.rows-1), randint(0, self.columns-1))
         visited = set()
