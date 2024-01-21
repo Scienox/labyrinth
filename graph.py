@@ -8,37 +8,6 @@ class Graph(Table):
 
         self.makeWay()
 
-    def placeWall(self, position1, position2, history):
-        row = 0
-        column = 1
-        horizontal = position1[row] == position2[row]
-        vertical = position1[column] == position2[column]
-        previousPosition = (history[-2][row], history[-2][column]) if 1 < len(history) else (None, None)
-
-        if horizontal:
-            # Bottom position
-            if position1[row] < self.rows - 1:
-                bottomPosition = (position1[row]+1, position1[column])
-                if bottomPosition != previousPosition:
-                    self.buildWall(position1, bottomPosition)
-            # Top position
-            if 0 < position1[row]:
-                topPosition = (position1[row]-1, position1[column])
-                if topPosition != previousPosition:
-                    self.buildWall(position1, topPosition)
-
-        elif vertical:
-            # Right position
-            if position1[column] < self.columns - 1:
-                rightPosition = (position1[row], position1[column]+1)
-                if rightPosition != previousPosition:
-                    self.buildWall(position1, rightPosition)
-            # left position
-            if 0 < position1[column]:
-                leftPosition = (position1[row], position1[column]-1)
-                if leftPosition != previousPosition:
-                    self.buildWall(position1, leftPosition)
-
     def makeWay(self):
         steps = (self.rows * self.columns) - 1
         position = (randint(0, self.rows-1), randint(0, self.columns-1))
